@@ -1,0 +1,2 @@
+class DatabaseUserNotFoundError(Exception):
+    pass
