@@ -1,6 +1,7 @@
 from flask_restx import Resource
 from requests.exceptions import HTTPError
 
+from app.exceptions import DatabaseUserNotFoundError
 from app.main import api
 from app.reqparse import repository_args, repository_list_args
 from app.use_cases import get_repositories, get_repository_from_github
@@ -24,6 +25,8 @@ class RepositoryList(Resource):
             return result, 200
         except HTTPError:
             return {"message": "Falha ao buscar o usuário"}, 400
+        except DatabaseUserNotFoundError:
+            return {"message": "Usuário não encontrado na base de dados"}, 400
 
 
 api.add_resource(RepositoryList, "/repositories")

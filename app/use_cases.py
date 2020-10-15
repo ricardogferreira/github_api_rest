@@ -1,3 +1,4 @@
+from app.exceptions import DatabaseUserNotFoundError
 from app.external import (
     parse_user,
     get_repositories_by_username,
@@ -35,6 +36,9 @@ def get_user_repositories_from_local(username: str) -> dict:
     em uma estrutura de dicionário
     """
     user = User.query.filter_by(username=username).first()
+    if not user:
+        raise DatabaseUserNotFoundError
+
     user_repositories = zip_user_repositories(
         {
             "user_id": user.id,
@@ -42,6 +46,7 @@ def get_user_repositories_from_local(username: str) -> dict:
         },
         parse_repositories(user.repositories),
     )
+
     return user_repositories
 
 
