@@ -14,6 +14,11 @@ services:
       - /var/lib/postgresql/data
     networks:
       - database-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   admin:
     image: dpage/pgadmin4
@@ -43,6 +48,7 @@ services:
       - "SECRET_KEY=1234443sadfsad3214232qabcsadfsadf"
     depends_on:
       - postgres
+      - admin
 
 networks:
   database-network:
