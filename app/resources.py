@@ -10,9 +10,11 @@ from app.use_cases import get_repositories, get_repository_from_github
 class Repository(Resource):
     def get(self, username: str, repository_name: str):
         args = repository_args()
-        result = get_repository_from_github(username, repository_name, **args)
-        return result, 200
-
+        try:
+            result = get_repository_from_github(username, repository_name, **args)
+            return result, 200
+        except HTTPError:
+            return {"message": "Falha ao buscar o repositório no github"}, 400
 
 class RepositoryList(Resource):
     def get(self):
