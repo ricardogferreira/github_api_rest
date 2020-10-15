@@ -1,12 +1,10 @@
 from app.exceptions import DatabaseUserNotFoundError
-from app.external import (
-    parse_user,
-    get_repositories_by_username,
-    get_repository_by_username_and_name,
-)
-from app.models import User, Repository
+from app.external import (get_repositories_by_username,
+                          get_repository_by_username_and_name, parse_user)
 from app.main import db
-from app.utils import zip_user_repositories, parse_repository, parse_repositories
+from app.models import Repository, User
+from app.utils import (parse_repositories, parse_repository,
+                       zip_user_repositories)
 
 
 def save_repository(
