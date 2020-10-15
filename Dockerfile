@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt --no-cache-dir
 
 COPY . .
 
-CMD [ "flask", "run", "--host=0.0.0.0" ]
+CMD [ "bash", "app.sh" ]
