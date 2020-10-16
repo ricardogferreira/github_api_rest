@@ -6,11 +6,12 @@ GITHUB_API_URL = "https://api.github.com"
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 POSTGRES_USER = os.environ.get("POSTGRES_USER")
 POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
-POSTGRES_ADDRESS = os.environ.get("POSTGRES_ADDRESS", 'localhost')
+POSTGRES_ADDRESS = os.environ.get("POSTGRES_ADDRESS", "localhost")
+POSTGRES_DB = os.environ.get("POSTGRES_DB", "github_api")
 
-if POSTGRES_USER and POSTGRES_PASSWORD and POSTGRES_ADDRESS:
-    SQLALCHEMY_DATABASE_URI = "postgresql://{}:{}@{}:5432/github_api".format(
-        POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_ADDRESS
+if all([POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_ADDRESS, POSTGRES_DB]):
+    SQLALCHEMY_DATABASE_URI = "postgresql://{}:{}@{}:5432/{}".format(
+        POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_ADDRESS, POSTGRES_DB
     )
 else:
     SQLALCHEMY_DATABASE_URI = "sqlite:////tmp/test.db"
