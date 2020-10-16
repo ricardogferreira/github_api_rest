@@ -2,7 +2,7 @@ import json
 
 import requests
 
-from app.config import GITHUB_API_URL
+from .config import GITHUB_API_URL
 
 
 def parse_user(repositories: list) -> dict:

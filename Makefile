@@ -15,4 +15,4 @@ coverage-report:
 	coverage report -m
 
 serve:
-	FLASK_APP=app FLASK_ENV=development flask run
+	FLASK_APP=github_api_rest FLASK_ENV=development flask run

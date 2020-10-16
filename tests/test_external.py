@@ -3,9 +3,12 @@ from unittest.mock import Mock
 import pytest
 from requests.exceptions import HTTPError
 
-from app.external import (get_repositories_by_username,
-                          get_repository_by_username_and_name, parse_user,
-                          request_external_to_json)
+from github_api_rest.external import (
+    get_repositories_by_username,
+    get_repository_by_username_and_name,
+    parse_user,
+    request_external_to_json,
+)
 
 
 def test_parse_user(user, repositories):
@@ -15,7 +18,7 @@ def test_parse_user(user, repositories):
 def test_get_repositories_by_username(username, repositories, mocker):
     expected_return = repositories
     request_external_to_json_mock = mocker.patch(
-        "app.external.request_external_to_json", return_value=expected_return
+        "github_api_rest.external.request_external_to_json", return_value=expected_return
     )
     repositories = get_repositories_by_username(username)
     request_external_to_json_mock.assert_called_with(
@@ -29,7 +32,7 @@ def test_get_repository_by_username_and_name(
 ):
     expected_return = repository
     request_external_to_json_mock = mocker.patch(
-        "app.external.request_external_to_json", return_value=expected_return
+        "github_api_rest.external.request_external_to_json", return_value=expected_return
     )
     repository = get_repository_by_username_and_name(username, repository_name)
     request_external_to_json_mock.assert_called_with(

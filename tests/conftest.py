@@ -1,6 +1,6 @@
 from pytest import fixture
 
-from app.main import app
+from github_api_rest.main import app
 
 
 @fixture

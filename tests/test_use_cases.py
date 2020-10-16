@@ -1,11 +1,14 @@
-from app.use_cases import (get_repositories, get_repository_from_github,
-                           get_user_and_repositories_from_github,
-                           get_user_repositories_from_local)
+from github_api_rest.use_cases import (
+    get_repositories,
+    get_repository_from_github,
+    get_user_and_repositories_from_github,
+    get_user_repositories_from_local,
+)
 
 
 def test_get_repositories_using_local_data(username, mocker):
     get_user_repositories_from_local_mock = mocker.patch(
-        "app.use_cases.get_user_repositories_from_local"
+        "github_api_rest.use_cases.get_user_repositories_from_local"
     )
 
     get_repositories(username, from_local=True)
@@ -15,7 +18,7 @@ def test_get_repositories_using_local_data(username, mocker):
 
 def test_get_repositories_using_github_data(username, mocker):
     get_user_and_repositories_from_github_mock = mocker.patch(
-        "app.use_cases.get_user_and_repositories_from_github"
+        "github_api_rest.use_cases.get_user_and_repositories_from_github"
     )
 
     get_repositories(username, from_local=False)
@@ -28,14 +31,14 @@ def test_get_user_and_repositories_from_github(
 ):
 
     get_repositories_by_username_mock = mocker.patch(
-        "app.use_cases.get_repositories_by_username", return_value=repositories
+        "github_api_rest.use_cases.get_repositories_by_username", return_value=repositories
     )
-    parse_user_mock = mocker.patch("app.use_cases.parse_user", return_value=user)
+    parse_user_mock = mocker.patch("github_api_rest.use_cases.parse_user", return_value=user)
     parse_repositories_mock = mocker.patch(
-        "app.use_cases.parse_repositories", return_value=parsed_repositories
+        "github_api_rest.use_cases.parse_repositories", return_value=parsed_repositories
     )
     zip_user_repositories_mock = mocker.patch(
-        "app.use_cases.zip_user_repositories", return_value=user_repositories
+        "github_api_rest.use_cases.zip_user_repositories", return_value=user_repositories
     )
 
     user_and_repositories = get_user_and_repositories_from_github(username)
@@ -51,15 +54,15 @@ def test_get_repository_from_github_with_save_data(
     parsed_repository, repository, repository_name, username, mocker
 ):
     get_repository_by_username_and_name_mock = mocker.patch(
-        "app.use_cases.get_repository_by_username_and_name",
+        "github_api_rest.use_cases.get_repository_by_username_and_name",
         return_value=repository,
     )
 
     parse_repository_mock = mocker.patch(
-        "app.use_cases.parse_repository", return_value=parsed_repository
+        "github_api_rest.use_cases.parse_repository", return_value=parsed_repository
     )
 
-    save_repository_mock = mocker.patch("app.use_cases.save_repository")
+    save_repository_mock = mocker.patch("github_api_rest.use_cases.save_repository")
 
     get_repository_from_github(username, repository_name, save_data=True)
 
@@ -75,15 +78,15 @@ def test_get_repository_from_github_without_save_data(
 ):
     save_data = False
     get_repository_by_username_and_name_mock = mocker.patch(
-        "app.use_cases.get_repository_by_username_and_name",
+        "github_api_rest.use_cases.get_repository_by_username_and_name",
         return_value=repository,
     )
 
     parse_repository_mock = mocker.patch(
-        "app.use_cases.parse_repository", return_value=parsed_repository
+        "github_api_rest.use_cases.parse_repository", return_value=parsed_repository
     )
 
-    save_repository_mock = mocker.patch("app.use_cases.save_repository")
+    save_repository_mock = mocker.patch("github_api_rest.use_cases.save_repository")
 
     get_repository_from_github(username, repository_name, save_data)
 

@@ -1,7 +1,7 @@
 import pytest
 from requests.exceptions import ConnectionError, HTTPError
 
-from app.exceptions import DatabaseUserNotFoundError
+from github_api_rest.exceptions import DatabaseUserNotFoundError
 
 
 @pytest.mark.parametrize(
@@ -13,7 +13,7 @@ def test_get_repositories_from_user(
     from_local_text, from_local, client, parsed_repositories, username, mocker
 ):
     get_repositories_mock = mocker.patch(
-        "app.resources.get_repositories", return_value=parsed_repositories
+        "github_api_rest.resources.get_repositories", return_value=parsed_repositories
     )
     response = client.get(
         f"/repositories?username={username}&from_local={from_local_text}"
@@ -35,7 +35,7 @@ def test_get_repositories_from_user_with_error(
     exc, message_error, client, parsed_repositories, username, mocker
 ):
     get_repositories_mock = mocker.patch(
-        "app.resources.get_repositories", return_value=parsed_repositories
+        "github_api_rest.resources.get_repositories", return_value=parsed_repositories
     )
     get_repositories_mock.side_effect = exc()
     response = client.get(f"/repositories?username={username}")
@@ -49,7 +49,8 @@ def test_get_repository_by_username_and_repository_name(
     save_data, client, parsed_repository, username, repository_name, mocker
 ):
     get_repository_from_github_mock = mocker.patch(
-        "app.resources.get_repository_from_github", return_value=parsed_repository
+        "github_api_rest.resources.get_repository_from_github",
+        return_value=parsed_repository,
     )
     response = client.get(
         f"/users/{username}/repositories/{repository_name}/?save_data={save_data}"
@@ -82,7 +83,8 @@ def test_get_repository_by_username_and_repository_name_with_error(
 ):
 
     get_repository_from_github_mock = mocker.patch(
-        "app.resources.get_repository_from_github", return_value=parsed_repository
+        "github_api_rest.resources.get_repository_from_github",
+        return_value=parsed_repository,
     )
 
     get_repository_from_github_mock.side_effect = exc()

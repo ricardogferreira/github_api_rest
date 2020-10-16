@@ -44,7 +44,7 @@ services:
       - "POSTGRES_PASSWORD=adm123"
       - "POSTGRES_ADDRESS=postgres"
       - "POSTGRES_DB=github_api"
-      - "FLASK_APP=app"
+      - "FLASK_APP=github_api_rest"
       - "FLASK_ENV=development"
       - "SECRET_KEY=1234443sadfsad3214232qabcsadfsadf"
     depends_on:

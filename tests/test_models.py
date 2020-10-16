@@ -1,4 +1,4 @@
-from app.models import Repository, User
+from github_api_rest.models import Repository, User
 
 
 def test_user_repr():

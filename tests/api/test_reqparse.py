@@ -2,7 +2,7 @@ from unittest import mock
 
 from flask_restx import inputs
 
-from app.api.reqparse import repository_args, repository_list_args
+from github_api_rest.api.reqparse import repository_args, repository_list_args
 
 
 def test_repository_args_validate_args(mocker):
