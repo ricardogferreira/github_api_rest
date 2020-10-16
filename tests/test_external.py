@@ -3,21 +3,20 @@ from unittest.mock import Mock
 import pytest
 from requests.exceptions import HTTPError
 
-from app.external import (get_repositories_by_username,
-                          get_repository_by_username_and_name, parse_user,
-                          request_external_to_json)
+from app.external import (
+    get_repositories_by_username,
+    get_repository_by_username_and_name,
+    parse_user,
+    request_external_to_json,
+)
 
 
-def test_parse_user():
-    expected = {"user_id": 123, "username": "test123"}
-    repository = {"owner": {"id": 123, "login": "test123"}}
-    repositories = [repository]
-    assert parse_user(repositories) == expected
+def test_parse_user(user, repositories):
+    assert parse_user(repositories) == user
 
 
-def test_get_repositories_by_username(mocker):
-    username = "test123"
-    expected_return = [{"test": "test"}, {"test2": "test2"}]
+def test_get_repositories_by_username(username, repositories, mocker):
+    expected_return = repositories
     request_external_to_json_mocked = mocker.patch(
         "app.external.request_external_to_json", return_value=expected_return
     )
@@ -28,16 +27,16 @@ def test_get_repositories_by_username(mocker):
     assert repositories == expected_return
 
 
-def test_get_repository_by_username_and_name(mocker):
-    username = "test123"
-    repository_name = "repository_test123"
-    expected_return = {"test": "test"}
+def test_get_repository_by_username_and_name(
+    username, repository_name, repository, mocker
+):
+    expected_return = repository
     request_external_to_json_mocked = mocker.patch(
         "app.external.request_external_to_json", return_value=expected_return
     )
     repository = get_repository_by_username_and_name(username, repository_name)
     request_external_to_json_mocked.assert_called_with(
-        "https://api.github.com/repos/test123/repository_test123"
+        "https://api.github.com/repos/test123/test_repository1"
     )
 
     assert repository == expected_return
