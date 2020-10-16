@@ -16,6 +16,8 @@ Primeiramente é preciso fazer o build, utilize o comando `docker-compose build`
 
 Para subir o ambiente execute o comando `docker-compose up`
 
+Comandos podem serem executados dentro do container da seguinte forma: `docker-compose exec app <comando>`
+
 A aplicação vai rodar na porta 5000
 
 ## Instalação local sem docker e docker-compose
