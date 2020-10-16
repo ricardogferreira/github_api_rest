@@ -43,6 +43,8 @@ Executar teste e coverage: `make coverage`
 
 Executar coverage com detalhes: `make coverage-report`
 
+Executar servidor de desenvolvimento: `make serve`
+
 
 ## Variáveis de ambiente disponíveis para configuração
 ```
