@@ -3,6 +3,7 @@ pep8:
 
 fix-import:
 	isort app
+	isort tests
 
 test:
 	pytest -v
