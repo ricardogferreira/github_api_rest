@@ -1,4 +1,4 @@
-# github_api_rest
+# GITHUB API REST
 Api para retornar dados de usuários e repositórios públicos do github
 
 ### Docker
@@ -8,7 +8,7 @@ Para subir a imagem utilize o comando:
 A aplicação vai rodar na porta 5000
 
 ## Docker-compose
-###Com o docker-compose você consegue subir o ambiente completo, com persistência de dados.
+### Com o docker-compose você consegue subir o ambiente completo, com persistência de dados.
 
 Primeiramente é preciso fazer o build, utilize o comando `docker-compose build`
 Para subir o ambiente execute o comando `docker-compose up`
@@ -17,11 +17,11 @@ A aplicação vai rodar na porta 5000
 ## Instalação local sem docker e docker-compose
 Utilizando o pyenv ou virtualenv crie um ambiente virtual, utilize o python3.6
 
-####Comando virtualenv
+#### Comando virtualenv
 Criar ambiente: `virutalenv -p python3.6 .venv`
 Ativar ambiente: `source .venv/bin/activate`
 
-####Comando pyenv
+#### Comando pyenv
 Criar ambiente `pyenv virtualenv 3.6.12 github_api_rest_env`
 Ativar ambiente: `pyenv activate github_api_rest_env`
 

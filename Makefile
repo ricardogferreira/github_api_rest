@@ -13,3 +13,6 @@ coverage:
 
 coverage-report:
 	coverage report -m
+
+serve:
+	FLASK_APP=app FLASK_ENV=development flask run
