@@ -54,6 +54,10 @@ Executar coverage com detalhes: `make coverage-report`
 
 Executar servidor de desenvolvimento: `make serve`
 
+Comando para criar migrações do banco de dados: `flask db migrate`
+
+Comando para instalar migrações: `flask db upgrade`
+
 
 ## Variáveis de ambiente disponíveis para configuração
 ```
@@ -66,8 +70,3 @@ FLASK_APP=app
 FLASK_ENV=development
 ```
 Obs: Para utilizar o POSTGRES todas variáveis POSTGRES_... devem ser preenchidas.
-
-## Comandos uteis
-Comando para criar migrações do banco de dados: `flask db migrate`
-
-Comando para instalar migrações: `flask db upgrade`
