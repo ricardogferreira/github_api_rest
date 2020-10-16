@@ -1,6 +1,7 @@
 import collections
 
-from app.utils import parse_repositories, parse_repository, zip_user_repositories
+from app.utils import (parse_repositories, parse_repository,
+                       zip_user_repositories)
 
 
 def test_zip_user_repositories():

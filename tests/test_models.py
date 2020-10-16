@@ -1,4 +1,4 @@
-from app.models import User, Repository
+from app.models import Repository, User
 
 
 def test_user_repr():

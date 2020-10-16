@@ -1,5 +1,6 @@
-from flask_restx import inputs
 from unittest import mock
+
+from flask_restx import inputs
 
 from app.reqparse import repository_args, repository_list_args
 

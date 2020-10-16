@@ -3,12 +3,9 @@ from unittest.mock import Mock
 import pytest
 from requests.exceptions import HTTPError
 
-from app.external import (
-    parse_user,
-    get_repositories_by_username,
-    get_repository_by_username_and_name,
-    request_external_to_json,
-)
+from app.external import (get_repositories_by_username,
+                          get_repository_by_username_and_name, parse_user,
+                          request_external_to_json)
 
 
 def test_parse_user():
