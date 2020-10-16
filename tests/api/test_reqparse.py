@@ -6,38 +6,38 @@ from app.api.reqparse import repository_args, repository_list_args
 
 
 def test_repository_args_validate_args(mocker):
-    RequestParserMocked = mock.MagicMock()
-    add_argument_mocked = mock.MagicMock()
-    parse_args_mocked = mock.MagicMock()
-    RequestParserMocked.add_argument = add_argument_mocked
-    RequestParserMocked.parse_args = parse_args_mocked
+    RequestParserMock = mock.MagicMock()
+    add_argument_mock = mock.MagicMock()
+    parse_args_mock = mock.MagicMock()
+    RequestParserMock.add_argument = add_argument_mock
+    RequestParserMock.parse_args = parse_args_mock
 
-    mocker.patch("flask_restx.reqparse.RequestParser", return_value=RequestParserMocked)
+    mocker.patch("flask_restx.reqparse.RequestParser", return_value=RequestParserMock)
 
     repository_args()
 
-    add_argument_mocked.assert_called_with(
+    add_argument_mock.assert_called_with(
         "save_data",
         type=inputs.boolean,
         required=True,
         help="Armazena no banco de dados os dados coletado do github?",
         location="args",
     )
-    parse_args_mocked.assert_called()
+    parse_args_mock.assert_called()
 
 
 def test_repository_list_args_validate_args(mocker):
-    RequestParserMocked = mock.MagicMock()
-    add_argument_mocked = mock.MagicMock()
-    parse_args_mocked = mock.MagicMock()
-    RequestParserMocked.add_argument = add_argument_mocked
-    RequestParserMocked.parse_args = parse_args_mocked
+    RequestParserMock = mock.MagicMock()
+    add_argument_mock = mock.MagicMock()
+    parse_args_mock = mock.MagicMock()
+    RequestParserMock.add_argument = add_argument_mock
+    RequestParserMock.parse_args = parse_args_mock
 
-    mocker.patch("flask_restx.reqparse.RequestParser", return_value=RequestParserMocked)
+    mocker.patch("flask_restx.reqparse.RequestParser", return_value=RequestParserMock)
 
     repository_list_args()
 
-    add_argument_mocked.call_args_with(
+    add_argument_mock.call_args_with(
         "username",
         required=True,
         type=str,
@@ -45,7 +45,7 @@ def test_repository_list_args_validate_args(mocker):
         location="args",
     )
 
-    add_argument_mocked.call_args_with(
+    add_argument_mock.call_args_with(
         "from_local",
         type=inputs.boolean,
         default=False,
@@ -53,5 +53,5 @@ def test_repository_list_args_validate_args(mocker):
         location="args",
     )
 
-    assert add_argument_mocked.call_count, 2
-    parse_args_mocked.assert_called()
+    assert add_argument_mock.call_count, 2
+    parse_args_mock.assert_called()
