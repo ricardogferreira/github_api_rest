@@ -3,8 +3,9 @@ from requests.exceptions import ConnectionError, HTTPError
 
 from app.exceptions import DatabaseUserNotFoundError
 from app.main import api
-from app.reqparse import repository_args, repository_list_args
 from app.use_cases import get_repositories, get_repository_from_github
+
+from .reqparse import repository_args, repository_list_args
 
 
 class Repository(Resource):
