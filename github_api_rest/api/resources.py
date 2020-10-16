@@ -3,7 +3,8 @@ from requests.exceptions import ConnectionError, HTTPError
 
 from github_api_rest.exceptions import DatabaseUserNotFoundError
 from github_api_rest.main import api
-from github_api_rest.use_cases import get_repositories, get_repository_from_github
+from github_api_rest.use_cases import (get_repositories,
+                                       get_repository_from_github)
 
 from .reqparse import repository_args, repository_list_args
 

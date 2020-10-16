@@ -3,12 +3,9 @@ from unittest.mock import Mock
 import pytest
 from requests.exceptions import HTTPError
 
-from github_api_rest.external import (
-    get_repositories_by_username,
-    get_repository_by_username_and_name,
-    parse_user,
-    request_external_to_json,
-)
+from github_api_rest.external import (get_repositories_by_username,
+                                      get_repository_by_username_and_name,
+                                      parse_user, request_external_to_json)
 
 
 def test_parse_user(user, repositories):

@@ -1,9 +1,7 @@
-from github_api_rest.use_cases import (
-    get_repositories,
-    get_repository_from_github,
-    get_user_and_repositories_from_github,
-    get_user_repositories_from_local,
-)
+from github_api_rest.use_cases import (get_repositories,
+                                       get_repository_from_github,
+                                       get_user_and_repositories_from_github,
+                                       get_user_repositories_from_local)
 
 
 def test_get_repositories_using_local_data(username, mocker):

@@ -1,10 +1,7 @@
 import collections
 
-from github_api_rest.utils import (
-    parse_repositories,
-    parse_repository,
-    zip_user_repositories,
-)
+from github_api_rest.utils import (parse_repositories, parse_repository,
+                                   zip_user_repositories)
 
 
 def test_zip_user_repositories(user, parsed_repositories, user_repositories):

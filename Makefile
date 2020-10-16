@@ -2,7 +2,7 @@ pep8:
 	isort app --check-only --skip migrations
 
 fix-import:
-	isort app
+	isort github_api_rest
 	isort tests
 
 test:
