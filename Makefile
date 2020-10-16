@@ -8,4 +8,7 @@ test:
 	pytest -v
 
 coverage:
-	pytest -v --cov
+	pytest -v --cov -vv
+
+coverage-report:
+	coverage report -m
