@@ -32,11 +32,17 @@ Obs: Executando dessa forma o banco de dados a ser utilizado por padrão vai ser
 A conexão com o banco de dados pode ser alterado via variáveis de ambiente ou dentro do arquivo config.py
 
 ## Comandos Uteis
+
 Rodar validação do pep8: `make pep8`
+
 Fazer correção de imports: `make fix-import`
+
 Executar teste sem coverage: `make test`
+
 Executar teste e coverage: `make coverage`
+
 Executar coverage com detalhes: `make coverage-report`
+
 
 ## Variáveis de ambiente disponíveis para configuração
 ```
@@ -48,4 +54,4 @@ SECRET_KEY
 FLASK_APP
 FLASK_ENV
 ```
-Obs: Para utilizar o POSTGRES todas variáveis deve ser preenchidas.
+Obs: Para utilizar o POSTGRES todas variáveis devem ser preenchidas.
