@@ -2,19 +2,13 @@ from unittest import mock
 
 import pytest
 
-from github_api_rest.use_cases import (
-    get_repositories,
-    get_repository_from_github,
-    get_user_and_repositories_from_github,
-    get_user_repositories_from_local,
-    save_changes,
-    save_repository,
-)
-
-from github_api_rest.exceptions import (
-    DatabaseRepositoryNotFoundError,
-    DatabaseUserNotFoundError,
-)
+from github_api_rest.exceptions import (DatabaseRepositoryNotFoundError,
+                                        DatabaseUserNotFoundError)
+from github_api_rest.use_cases import (get_repositories,
+                                       get_repository_from_github,
+                                       get_user_and_repositories_from_github,
+                                       get_user_repositories_from_local,
+                                       save_changes, save_repository)
 
 
 class UserMock:
