@@ -1,5 +1,7 @@
 from pytest import fixture
 
+from app.main import app
+
 
 @fixture
 def username():
@@ -106,3 +108,10 @@ def user_repositories(username, user_id, parsed_repositories):
         "user_id": user_id,
         "repositories": parsed_repositories,
     }
+
+
+@fixture
+def client():
+    client = app.test_client()
+    client.testing = True
+    return client
