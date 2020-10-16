@@ -1,9 +1,32 @@
-from .exceptions import DatabaseUserNotFoundError
+from .exceptions import (DatabaseRepositoryNotFoundError,
+                         DatabaseUserNotFoundError)
 from .external import (get_repositories_by_username,
                        get_repository_by_username_and_name, parse_user)
 from .main import db
 from .models import Repository, User
 from .utils import parse_repositories, parse_repository, zip_user_repositories
+
+
+def get_user_from_db(username: str) -> User:
+    """Busca usuário no banco de dados"""
+    user = User.query.filter_by(username=username).first()
+    if not user:
+        raise DatabaseUserNotFoundError
+    return user
+
+
+def get_repository_from_db(name: str, user: str) -> Repository:
+    """Busca repositório no banco de dados"""
+    repository = Repository.query.filter_by(name=name, user=user).first()
+    if not repository:
+        raise DatabaseRepositoryNotFoundError
+    return repository
+
+
+def save_changes(data):
+    """Faz o commit das alterações"""
+    db.session.add(data)
+    db.session.commit()
 
 
 def save_repository(
@@ -12,19 +35,21 @@ def save_repository(
     """
     Salva os dados do usuário e repositório no banco de dados.
     """
-    user = User.query.filter_by(username=username).first()
-    if user is None:
+    try:
+        user = get_user_from_db(username)
+    except DatabaseUserNotFoundError:
         user = User(username=username, id=id)
 
-    repository = Repository.query.filter_by(name=repository_name, user=user).first()
-    repository = repository or Repository()
+    try:
+        repository = get_repository_from_db(name=repository_name, user=user)
+    except DatabaseRepositoryNotFoundError:
+        repository = Repository()
 
     for key, value in parsed_repository.items():
         setattr(repository, key, value)
 
     user.repositories.append(repository)
-    db.session.add(user)
-    db.session.commit()
+    save_changes(user)
 
 
 def get_user_repositories_from_local(username: str) -> dict:
@@ -32,10 +57,7 @@ def get_user_repositories_from_local(username: str) -> dict:
     Busca usuário e repositorios no banco de dados a partir do username e retorna
     em uma estrutura de dicionário
     """
-    user = User.query.filter_by(username=username).first()
-    if not user:
-        raise DatabaseUserNotFoundError
-
+    user = get_user_from_db(username)
     user_repositories = zip_user_repositories(
         {
             "user_id": user.id,
